@@ -2,17 +2,22 @@
 import { computed } from 'vue'
 import type { Restaurant } from '@/types'
 
-const props = defineProps({
-  restaurant: {
-    type: Object as () => Restaurant,
-    required: true,
+const {
+  restaurant = {
+    id: '',
+    name: '',
+    address: '',
+    website: '',
+    status: 'Want to Try',
   },
-})
+} = defineProps<{
+  restaurant: Restaurant
+}>()
 
 const emit = defineEmits(['delete-restaurant'])
 
 const statusColor = computed(() => {
-  switch (props.restaurant.status) {
+  switch (restaurant.status) {
     case 'Want to Try':
       return 'is-warning'
     case 'Recommended':
@@ -25,7 +30,7 @@ const statusColor = computed(() => {
 })
 
 const deleteRestaurant = () => {
-  emit('delete-restaurant', props.restaurant)
+  emit('delete-restaurant', restaurant)
 }
 </script>
 

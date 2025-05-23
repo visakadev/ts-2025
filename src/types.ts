@@ -1,4 +1,4 @@
-import { restaurantStatusList, dietList } from '@/constants'
+import type { restaurantStatusList, dietList } from '@/constants'
 export type Restaurant = {
   id: string
   name: string

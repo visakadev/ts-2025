@@ -1,28 +1,32 @@
-<script>
-export default {
-  props: {
-    tagLine: {
-      type: String,
-      default: 'Your favorite food, delivered with Uber Eats',
-    },
-  },
-  data: () => ({
-    navList: [
-      {
-        name: 'Home',
-        path: '/',
-      },
-      {
-        name: 'Restaurants',
-        path: '/restaurants',
-      },
-      {
-        name: 'Dishes',
-        path: '/dishes',
-      },
-    ],
-  }),
+<script setup lang="ts">
+import { ref } from 'vue'
+
+interface NavItem {
+  name: string
+  path: string
 }
+
+const props = defineProps({
+  tagLine: {
+    type: String,
+    default: 'Your favorite food, delivered with Uber Eats',
+  },
+})
+
+const navList = ref<NavItem[]>([
+  {
+    name: 'Home',
+    path: '/',
+  },
+  {
+    name: 'Restaurants',
+    path: '/restaurants',
+  },
+  {
+    name: 'Dishes',
+    path: '/dishes',
+  },
+])
 </script>
 
 <template>
@@ -35,7 +39,7 @@ export default {
     <div class="navbar-menu">
       <div class="navbar-start">
         <div class="navbar-item">
-          <small>{{ tagline }}</small>
+          <small>{{ props.tagLine }}</small>
         </div>
       </div>
       <div class="navbar-end">
